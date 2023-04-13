@@ -4,7 +4,9 @@
 
 2. 生成ssh
 
-   1. ```bash
+   1. ssh-keygen
+
+   2. ```bash
       $ ssh-keygen -t ed25519 -C "1814666859@qq.com"
       #如果您使用的是不支持 Ed25519 算法的旧系统，请使用：
       
@@ -77,75 +79,75 @@
 
 10. git commit -m 
 
-   1. 提交更新
+   11. 提交更新
 
-11. git commit -a
+12. git commit -a
 
-   12. 跳过  git add 
-   13. 自动把所有已经跟踪过的文件暂存起来一并提交
+   13. 跳过  git add 
+   14. 自动把所有已经跟踪过的文件暂存起来一并提交
 
-14. git status
+15. git status
 
-15. gi
+16. gi
 
-16. git checkout  A分支 
+17. git checkout  A分支 
 
-   17. --切换到对应A分支
+   18. --切换到对应A分支
 
-18. git branch  A分支 
+19. git branch  A分支 
     1. -- 新建A分支
 
-19. git checkout -b  A分支
+20. git checkout -b  A分支
     1. 新建A分支，并切换到A分支
 
-20. git branch -d  A分支
+21. git branch -d  A分支
     1. 删除A分支
 
-21. git branch -v 
+22. git branch -v 
     1. 查看各个分支最后一次commit信息
 
-22. git branch --merged
+23. git branch --merged
     1. 查看那些分支已被并入当前分支
 
-23. git branch --no-merged
+24. git branch --no-merged
     1. 查看尚未合并的工作
 
-24. git diff
+25. git diff
 
     1. 查看尚未保存的文件更新了那部分
 
-25. git diff --cached
+26. git diff --cached
     git diff --staged ，
 
     1. 要看已经暂存起来的文件和上次提交时的快照之间的差异
 
-26. git mv
+27. git mv
 
-27. git log
+28. git log
 
-28. 
+29. 
 
-29. git push origin  本地分支
+30. git push origin  本地分支
     1. origin 远程分支 
 
-30. git push origin  :A
+31. git push origin  :A
     1. 删除远程分支 A\
 
-31. git push origin --delete serverfix
+32. git push origin --delete serverfix
 
     1. 基本上这个命令做的只是从服务器上移除这个指针。 Git 服务器通常会保留数据一段时间直到垃圾回收运行，所以如果不小心删除掉了，通常是很容易恢复的。
 
-32. git remove
+33. git remove
 
     1. 移除文件操作
     2. 如果删除之前修改过并且已经放到暂存区域的话，则必须
        要用强制删除选项-f
 
-33. git remove --cached
+34. git remove --cached
 
     1. 把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中。
 
-34. git show
+35. git show
 
 ## 变基
 
@@ -210,3 +212,16 @@ fatal: 'https://github.com/L-creater/2023.git/' 鉴权失败
 - help: [Create ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)在此页面上，首先选择您的操作系统，然后按照以下步骤操作
 - [将新的 SSH 密钥添加到您的 GitHub 帐户](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - 最后，使用 ssh 链接而不是 http 克隆 repos
+
+## error:git@github.com's password: 
+
+有时，防火墙会完全拒绝允许 SSH 连接。 如果无法选择使用[具有凭据缓存的 HTTPS 克隆](https://docs.github.com/zh/github/getting-started-with-github/caching-your-github-credentials-in-git)，可以尝试使用通过 HTTPS 端口建立的 SSH 连接克隆。 大多数防火墙规则应允许此操作，但代理服务器可能会干扰。
+
+要测试通过 HTTPS 端口的 SSH 是否可行，请运行以下 SSH 命令：
+
+```bash
+$ ssh -T -p 443 git@ssh.github.com
+> Hi USERNAME! You've successfully authenticated, but GitHub does not
+> provide shell access.
+```
+
