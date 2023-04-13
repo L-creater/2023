@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/liu/2023/c++server/cmake/build",
+  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/cmake/include   -Wall -g   -o CMakeFiles/my_cmake.dir/main.cpp.o -c /home/liu/2023/c++server/cmake/main.cpp",
+  "file": "/home/liu/2023/c++server/cmake/main.cpp"
+},
+{
+  "directory": "/home/liu/2023/c++server/cmake/build",
+  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/cmake/include   -Wall -g   -o CMakeFiles/my_cmake.dir/src/gun.cpp.o -c /home/liu/2023/c++server/cmake/src/gun.cpp",
+  "file": "/home/liu/2023/c++server/cmake/src/gun.cpp"
+},
+{
+  "directory": "/home/liu/2023/c++server/cmake/build",
+  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/cmake/include   -Wall -g   -o CMakeFiles/my_cmake.dir/src/solider.cpp.o -c /home/liu/2023/c++server/cmake/src/solider.cpp",
+  "file": "/home/liu/2023/c++server/cmake/src/solider.cpp"
+}
+]

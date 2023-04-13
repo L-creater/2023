@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/strategy.dir/strategy.cpp.o  -o strategy 

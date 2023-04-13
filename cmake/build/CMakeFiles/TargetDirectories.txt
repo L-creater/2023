@@ -1,0 +1,2 @@
+/home/liu/2023/cmake/build/CMakeFiles/rebuild_cache.dir
+/home/liu/2023/cmake/build/CMakeFiles/edit_cache.dir

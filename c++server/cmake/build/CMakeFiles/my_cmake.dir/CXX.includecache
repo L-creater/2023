@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/gun.h
+iostream
+-
+
+../include/solider.h
+string
+-
+gun.h
+../include/gun.h
+
+/home/liu/2023/c++server/cmake/main.cpp
+gun.h
+/home/liu/2023/c++server/cmake/gun.h
+solider.h
+/home/liu/2023/c++server/cmake/solider.h
+

@@ -1,0 +1,2 @@
+/home/ly/2023/cmake-cookbook/chapter-01/recipe-06/example/CMakeFiles/edit_cache.dir
+/home/ly/2023/cmake-cookbook/chapter-01/recipe-06/example/CMakeFiles/rebuild_cache.dir
