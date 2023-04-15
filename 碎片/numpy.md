@@ -137,3 +137,14 @@ numpy.random.randn(d0,d1,…,dn)
 [0, 3, 6, 9]
 ```
 
+## 切片
+
+[切片](https://nbviewer.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb#Array-Slicing:-Accessing-Subarrays)
+
+Just as we can use square brackets to access individual array elements, we can also use them to access subarrays with the *slice* notation, marked by the colon (`:`) character. The NumPy slicing syntax follows that of the standard Python list; to access a slice of an array `x`, use this:
+
+```
+x[start:stop:step]
+```
+
+If any of these are unspecified, they default to the values `start=0`, `stop=`*`size of dimension`*, `step=1`. We'll take a look at accessing sub-arrays in one dimension and in multiple dimensions.
