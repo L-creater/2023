@@ -1,10 +1,5 @@
 # cv
 
-1. 滤波器的权重数据要按 (output_channel, input_channel, height, width) 的顺序书写.
-
-   1. output_channel  ---滤波器个数
-   2. input_channel --- 通道数
-
 初学者教程
 
 1. 设置TensorFlow
@@ -66,8 +61,118 @@ probability_model = tf.keras.Sequential([
 
 
 
-## 加载和预处理图像
+## [加载和预处理图像](https://tensorflow.google.cn/tutorials/load_data/images?hl=zh-cn)
 
 - 首先，您将使用高级 Keras 预处理效用函数（例如 [`tf.keras.utils.image_dataset_from_directory`](https://tensorflow.google.cn/api_docs/python/tf/keras/utils/image_dataset_from_directory?hl=zh-cn)）和层（例如 [`tf.keras.layers.Rescaling`](https://tensorflow.google.cn/api_docs/python/tf/keras/layers/Rescaling?hl=zh-cn)）来读取磁盘上的图像目录。
 - 然后，您将[使用 tf.data](https://tensorflow.google.cn/guide/data?hl=zh-cn) 从头编写自己的输入流水线。
 - 最后，您将从 [TensorFlow Datasets](https://tensorflow.google.cn/datasets?hl=zh-cn) 中的大型[目录](https://tensorflow.google.cn/datasets/catalog/overview?hl=zh-cn)下载数据集。
+
+# TensorFlow：Image classification
+
+本教程遵循基本的机器学习工作流程：
+
+检查和理解数据
+构建输入管道
+构建模型
+训练模型
+测试模型
+
+改进模型并重复该过程
+
+创建模型
+
+- 顺序模型 --Sequential
+
+```python
+num_classes = len(class_names)
+
+model = Sequential([
+  layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+  layers.Conv2D(16, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+  layers.Conv2D(32, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+  layers.Conv2D(64, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+  layers.Flatten(),
+  layers.Dense(128, activation='relu'),
+  layers.Dense(num_classes)
+])
+```
+
+编译模型
+
+[Model.compile](https://tensorflow.google.cn/api_docs/python/tf/keras/Model#compile)
+
+- 选择[`tf.keras.optimizers.Adam`](https://tensorflow.google.cn/api_docs/python/tf/keras/optimizers/Adam)优化器
+
+- [`tf.keras.losses.SparseCategoricalCrossentropy`](https://tensorflow.google.cn/api_docs/python/tf/keras/losses/SparseCategoricalCrossentropy)损失函数。
+- 要查看每个训练时期的训练和验证准确性，请将`metrics`参数传递给[`Model.compile`](https://tensorflow.google.cn/api_docs/python/tf/keras/Model#compile)。
+
+```python
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+```
+
+Model summary
+
+使用Keras方法查看网络的所有层[`Model.summary`](https://tensorflow.google.cn/api_docs/python/tf/keras/Model#summary)：
+
+[fit](https://tensorflow.google.cn/api_docs/python/tf/keras/Model#fit)---训练模型
+
+`model.fit()`
+
+```python
+epochs=10
+history = model.fit(
+  train_ds,
+  validation_data=val_ds,
+  epochs=epochs
+)
+```
+
+## 过拟合
+
+训练准确度随时间线性增加，而验证准确度在训练过程中停滞在 60% 左右。此外，训练和验证准确性之间的准确性差异很明显——[过度拟合](https://tensorflow.google.cn/tutorials/keras/overfit_and_underfit)的迹象。
+
+当训练示例数量较少时，模型有时会从训练示例中的噪声或不需要的细节中学习——在一定程度上会对模型在新示例上的性能产生负面影响。这种现象被称为过度拟合。这意味着该模型将很难在新数据集上进行泛化。
+
+### 	对抗过度拟合
+
+- 数据扩充
+
+- Dropout
+
+  
+
+## error
+
+运行错误：Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR
+
+![image-20230417190618836](/home/ly/.config/Typora/typora-user-images/image-20230417190618836.png)
+
+解决：
+
+TensorFlow2
+
+```python
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
+```
+
+## 选择适合的cuda版本
+
+```bash
+export CUDA_HOME=/usr/local/cuda-11.0
+export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-11.0/bin:$PATH
+
+source ~/.bashrc
+```
+
+**cond打包环境时，只会打包对应环境已经下载的包，不包括base包内的东西。**

@@ -359,3 +359,16 @@ docker run ...
 docker build -f 
 ```
 
+### 服务编排
+
+---按照一定的业务规则批量管理容器
+
+## docker Compose
+
+---编排多容器分布式部署的工具，提供命令集管理容器化应用的完整开发周期，包括服务构建，启动和停止。使用步骤：
+
+1. 利用Dockerfile定义运行环境镜像
+2. 使用docker-compose.yml定义组成应用的各种服务
+3. 运行docker-compose up 启动应用
+
+## Docker私有仓库

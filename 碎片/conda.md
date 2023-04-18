@@ -66,4 +66,48 @@ source activate tensorflow2.4
 
 conda activate 环境名
 
-部署新环境报错时，删除.bashrc 对应的提示   conda  语句
+
+
+linux
+
+```text
+# 创建目录 `my_env`，并将环境解压至该目录
+mkdir -p my_env
+tar -xzf my_env.tar.gz -C my_env
+
+# 使用python而不激活或修复前缀。
+# 大多数 python 库可以正常工作，但需要处理前缀的部分将失败。
+./my_env/bin/python
+
+# 激活环境，同时这步操作会将路径 `my_env/bin` 添加到环境变量 path
+source my_env/bin/activate
+
+# 在环境中运行python
+(my_env) $ python
+
+# 从激活环境中清除前缀。
+# 请注意，也可以在不激活环境的情况下运行此命令
+# 只要机器上已经安装了某个版本的python。
+(my_env) $ conda-unpack
+
+# 此时，环境与您在此路径直接使用 conda 安装的环境完全相同。
+# 所有脚本都应该工作正常。
+(my_env) $ ipython --version
+
+# 停用环境以将其从环境变量 path 中删除
+(my_env) $ source my_env/bin/deactivate
+```
+
+复制本地base
+
+```
+复制conda环境
+假设新环境名是xx
+
+conda create -n xx --clone base
+现在就可以用conda pack了
+
+conda pack -n xx
+会在当前工作目录下得到一个 xx.tar.gz的文件，之后下载到本地
+```
+
