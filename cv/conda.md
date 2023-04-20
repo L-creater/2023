@@ -40,6 +40,8 @@ conda activate 环境名
 
 
 
+## [conda](https://zhuanlan.zhihu.com/p/508480163)
+
 ## 打包环境
 
 安装conda-pack包

@@ -1,3 +1,19 @@
+
+
+# vscode 主题
+
+## Solarized
+
+## Solarized Light 
+
+## Atomize (Atom One Dark theme)
+
+## Eva Theme
+
+
+
+## one dark pro 
+
 # vscode 快捷键
 
 ##  跳转到指定行
