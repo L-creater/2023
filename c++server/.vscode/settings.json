@@ -33,5 +33,6 @@
         "sstream": "cpp",
         "tuple": "cpp",
         "utility": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/ly/2023/c++server/day12"
 }

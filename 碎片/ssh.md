@@ -46,7 +46,6 @@ sudo ufw default deny
 
 以上三条命令已经足够安全了，如果你需要开放某些服务，再使用sudo ufw allow开启。
 
-
 开启/关闭防火墙 (默认设置是’disable’)
 sudo ufw enable|disable
 

@@ -4,10 +4,6 @@
 
 ## [tf.io.TFRecordWriter](https://www.tensorflow.org/api_docs/python/tf/io/TFRecordWriter)
 
-
-
-
-
 ## 1.基础数据格式
 
 三种基础数据类型：bytes，float，int64
@@ -115,9 +111,11 @@ for row in train_data:
     writer.write(record.SerializeToString())
 ```
 
-## 4.验证数据写入是否正确
 
-## 5.训练时数据读取方式
+
+
+
+
 
 ## 构建TFRecord文件
 
@@ -143,6 +141,7 @@ with tf.io.TFRecordWriter(tfrecord_train) as writer:
         
 ```
 
+- zip  是将train_filenames和train_labels 打包形成元祖，一一对应。长度取两者小者
 - 其中`tfrecord_train`是用来保存`TFRecord`文件的绝对路径。
 - `filename`是照片的绝对路径构成的列表，`lable`是照片对于的类别列表，两个列表位置相互对应，这里的`feature`需要根据待保存的数据类型构建，这里因为要保存图片数据以及图片的类别，因此需要建立两项，然后数据类型要对应。之后建立实例`example`，最后执行序列化并写入文件，完成`TFRecord`文件的构建。
 
@@ -150,6 +149,115 @@ with tf.io.TFRecordWriter(tfrecord_train) as writer:
 
 
 
+```python
+Feature_description = {  # 定义Feature结构，告诉解码器每个Feature的类型是什么
+    'image/encoded': tf.io.FixedLenFeature([], tf.string),
+    'image/label': tf.io.FixedLenFeature([], tf.int64),
+}
+
+```
+
+
+
+## 解码
+
+```python
+def _parse_example(example_string):  
+    # 将 TFRecord 文件中的每一个序列化的 tf.train.Example 解码
+    feature_dict = tf.io.parse_single_example(example_string,Feature_description)
+    feature_dict['image/encoded'] = tf.io.decode_jpeg(feature_dict['image/encoded'], channels=3)  # 解码JPEG图片
+    img = feature_dict['image/encoded']
+    img = tf.image.resize(img, (96, 96))
+    img = img/255
+    return img, tf.stack([tf.cast(feature_dict['image/label'], 'int32')])
+
+```
+
+```python
+tf.io.decode_jpeg(
+    contents,
+    channels=0,
+    ratio=1,
+    fancy_upscaling=True,
+    try_recover_truncated=False,
+    acceptable_fraction=1,
+    dct_method='',
+    name=None
+)
+#contents --字符串类型的张量。 0-D, 一个0维的string类型的张量。即JPEG编码的图像内容。
+#ratio允许在解码期间将图像按比例缩小整数倍。允许的值有：1，2，4和8。这比之后再缩小图像要快得多
+```
+
+1. tf.io.parse_single_example来进行解码
+2.  [tf.io.decode_jpeg](https://www.tensorflow.org/api_docs/python/tf/io/decode_jpeg)
+   1. 参数
+   2. ` acceptable_fraction=1,` 
+      - 0：使用 JPEG 编码图像中的通道数。
+      - 1：输出灰度图。
+      - 3：输出一张RGB图像。
+   3. 返回类型为uint8的张量
+3. 
+
+## 加载TFRecord文件生成数据集
+
+```python
+"""**************************
+加载TFRecord文件生成数据集
+**************************"""
+#train_file  --是TFRecord文件所在位置
+raw_dataset = tf.data.TFRecordDataset(train_file)  # 读取 TFRecord 文件
+
+#repeat(count)函数是这批数据重复，可以指定参数，默认行为（如果 count是None或-1）是无限期重复数据集。。写这个的目的是当队列里最后一批数据（batch）不足
+#时可以补，不然会出现个报错 “OutOfRangeError: End of sequence”
+raw_dataset = raw_dataset.repeat()
+
+#用map函数解析数据。这里map需要传入一个自定义函数来解析，相当于把之前的转换在逆进行一次。简单来说就是告诉map函数这个文件该如何解码。---_parse_example --具体解码细节
+train_datasets = raw_dataset.map(_parse_example)
+
+# 用来打乱数据集中数据顺序,
+# shuffle是防止数据过拟合的重要手段，然而不当的buffer size，会导致shuffle无意义，？？？？
+train_datasets = train_datasets.shuffle(buffer_size=1024)
+
+train_datasets = train_datasets.batch(batch)
+
+train_datasets = train_datasets.prefetch(buffer_size=-1)  #开启预加载
+#prefetch是可以减少GPU空闲时间，提前加载后面批次的数据，参数是GPU预读取的数据数量，这里调成根据GPU状态动态调整。
+
+
+#处理 val_file
+raw_dataset2 = tf.data.TFRecordDataset(ver_file)  # 读取 TFRecord 文件
+raw_dataset2 = raw_dataset2.repeat()
+val_datasets = raw_dataset2.map(_parse_example)
+val_datasets = val_datasets.batch(batch)
+```
+
+### 关于buffer_size在shuffle和prefetch
+
+- Dataset.prefetch() 中的 buffer_size 仅影响生成下一个元素所需的时间。
+
+  - buffer_size --- 一个 tf.int64 标量 tf.Tensor，表示预取时将缓冲的最大元素数。如果使用值 tf.data.AUTOTUNE，则缓冲区大小是动态调整的。
+
+  
+
+  创建一个`Dataset`从该数据集中预取元素的 。
+
+  大多数数据集输入管道应以调用结束`prefetch`。这允许在处理当前元素时准备后面的元素。这通常会提高延迟和吞吐量，但代价是使用额外的内存来存储预取的元素。
+
+  
+
+  
+
+# [What is the proper use of Tensorflow dataset prefetch and cache options?](https://stackoverflow.com/questions/63796936/what-is-the-proper-use-of-tensorflow-dataset-prefetch-and-cache-options)
+
+当 GPU 在当前批次上进行前向/反向传播时，我们希望 CPU 处理下一批数据，使其立即准备就绪。作为计算机中最昂贵的部分，我们希望 GPU 能够充分在训练期间一直使用。我们称这种消费者/生产者重叠，其中消费者是 GPU，生产者是 CPU。
+
+使用 tf.data，您可以通过在管道末端（批处理后）简单调用 dataset.prefetch(1) 来完成此操作。这将始终预取一批数据并确保始终有一个准备就绪。
+
+在某些情况下，预取多个批次可能很有用。例如，如果预处理的持续时间变化很大，预取 10 个批次将平均处理 10 个批次的时间，而不是有时等待更长的批次。
+
+举一个具体的例子，假设 10% 的批次需要 10 秒来计算，而 90% 的批次需要 1 秒。如果 GPU 需要 2 秒来训练一个批次，那么通过预取多个批次，您可以确保我们永远不会等待这些罕见的更长的批次。”
+
+我不太确定如何确定每个批次的处理时间，但这是下一步。如果您的批次处理时间大致相同，那么我相信 prefetch(batch_size=1) 应该足够了，因为您的 GPU 不会等待 CPU 完成处理计算量大的批次。
 
 
 
@@ -161,6 +269,13 @@ with tf.io.TFRecordWriter(tfrecord_train) as writer:
 
 
 
+- [Dataset.shuffle](https://tensorflow.google.cn/api_docs/python/tf/data/Dataset#shuffle)() 中的 buffer_size 会影响数据集的随机性，从而影响元素的生成顺序。
+
+buffer_size::一个[`tf.int64`](https://tensorflow.google.cn/api_docs/python/tf#int64)标量[`tf.Tensor`](https://tensorflow.google.cn/api_docs/python/tf/Tensor)，表示新数据集将从中采样的此数据集中的元素数。 ---**如果你不想要懂原理，想要真正地、有效地用到这个shuffle方法，直接把size设置为整个数据集大小，或者成倍大小（感觉没必要）。**
+
+该数据集用`buffer_size`元素填充缓冲区，然后从该缓冲区中随机采样元素，用新元素替换所选元素。为了完美改组，需要缓冲区大小大于或等于数据集的完整大小。
+
+例如，如果您的数据集包含 10,000 个元素但`buffer_size`设置为 1,000，则`shuffle`最初只会从缓冲区的前 1,000 个元素中选择一个随机元素。一旦选择了一个元素，它在缓冲区中的空间将被下一个（即第 1,001 个）元素替换，从而保持 1,000 个元素的缓冲区。
 
 
 
@@ -168,7 +283,63 @@ with tf.io.TFRecordWriter(tfrecord_train) as writer:
 
 
 
+```python
+"""******************
+创建网络模型设置优化器
+******************"""
+optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
+loss_fn = tf.losses.SparseCategoricalCrossentropy()
+
+model = resnet(10575)
+
+model.compile(loss=loss_fn,
+              optimizer=optimizer,
+              metrics=[metrics.MySparseAccuracy(batch)])
+
+
+"""************************
+    设置回调保存模型
+************************"""
+checkpoint_dir = "./ckpt1"
+if not os.path.exists(checkpoint_dir):
+  os.makedirs(checkpoint_dir)
+
+ckpt_path = tf.train.latest_checkpoint('./ckpt1')
+if ckpt_path is not None:
+            print("[*] load ckpt from {}".format(ckpt_path))
+            model.load_weights(ckpt_path)
+else:
+            print("[*] training from scratch.")
+
+callbacks = [tf.keras.callbacks.ModelCheckpoint(
+            filepath=checkpoint_dir + '/ckpt-loss{loss:.2f}' + 'resnet_accuracy{myaccuracy:.3f}',
+            save_freq='epoch',
+            save_weights_only=True,
+            monitor='myaccuracy',
+            verbose=1
+        )]
+
+steps_per_epoch = 408072 //batch
+val_steps = 45341 // batch
+
+"""***********************
+        开始训练
+***********************"""
+print('Start training...')
+model.fit(train_datasets, epochs=epochs,callbacks=callbacks, steps_per_epoch=steps_per_epoch,
+          validation_data=val_datasets, validation_steps=val_steps)
+print("training done!")
+```
 
 
 
 
+### steps_per_epoch 和val_steps
+
+steps_per_epoch
+
+相当于有多少批次的数据从队列传过来，data_size是数据的数量，在整除batch就相当于所有数据跑一次了。用整除也是为了防止之前说的那个报错。
+
+val_steps
+
+仅当提供了 validation_data 并且是 tf.data 数据集时才相关。在每个纪元结束时执行验证时停止之前要绘制的总步骤数（样本批次）。如果 'validation_steps' 为 None，验证将运行直到 validation_data 数据集耗尽。在无限重复的数据集的情况下，它将陷入无限循环。如果指定了“validation_steps”并且仅使用部分数据集，则评估将从每个时期的数据集开头开始。这确保每次都使用相同的验证样本。

@@ -1,5 +1,81 @@
 # python
 
+# 画图
+
+## matplotlib.pyplot.figure 
+
+创建新图形，或激活现有图形。
+
+plt.figure(figsize=(8, 8))
+
+参数：
+
+- *figsize* --宽度、高度以英寸为单位。
+
+## plt.subplot(nrows, ncols, index)
+
+plt.subplot(1,2,1) ---plt.subplot(1,2,2)  对比下
+
+nrows 与 ncols 表示要划分几行几列的子区域（nrows*nclos表示子图数量），index 的初始值为1，用来选定具体的某个子区域。
+
+![image-20230428205846942](/home/ly/.config/Typora/typora-user-images/image-20230428205846942.png)
+
+参数：
+
+- 三个整数（*nrows*、*ncols*、*index*）。子图将 在具有*nrows*行和*ncols*列的网格上获取*索引*位置。 *index*从左上角的 1 开始，向右递增。*index也可以是指定子图的 (* *first* , *last* ) 索引（从 1 开始，包括*last*）的二元 组，例如，制作一个跨越图的上 2/3 的子图。`fig.add_subplot(3, 1, (1, 2))`
+- 一个 3 位整数。这些数字被解释为好像分别作为三个单位数整数给出，即`fig.add_subplot(235)`与 相同。请注意，这只能在不超过 9 个子图时使用。`fig.add_subplot(2, 3, 5)`
+
+## matplotlib.pyplot.plot
+
+```python
+plt.plot(x, y, color='green', marker='o', linestyle='dashed',
+     linewidth=2, markersize=12)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+# x, y ,和其它参数
+```
+
+## plt.[legend](https://so.csdn.net/so/search?q=legend&spm=1001.2101.3001.7020)()
+
+函数的作用是给图像加图例。
+
+```python
+plt.legend(loc='lower right')  #下端右边  -- 下面第一张图 --Training and Validation Accuracy
+
+plt.legend(loc='upper right')  #上端右边  -- 第二张图
+```
+
+图例是集中于地图一角或一侧的地图上各种符号和颜色所代表内容与指标的说明，有助于更好的认识地图。
+
+![image-20230428211113282](/home/ly/.config/Typora/typora-user-images/image-20230428211113282.png)
+
+## plt.title
+
+```python
+plt.title('Training and Validation Loss')
+```
+
+## plt.show()
+
+# 文件操作
+
+```python
+os.listdir(path)
+```
+
+- ## 返回值
+
+​				此方法返回一个列表，其中包含路径给定目录中条目的名称。
+
+- **path** -- 这是需要探索的目录。
+
+## zip() 
+
+函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。
+
+如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用`*`号操作符，可以将元组解压为列表。
+
+
+
 ## Python 引号
 
 Python 可以使用引号( **'** )、双引号( **"** )、三引号( **'''** 或 **"""** ) 来表示字符串，引号的开始与结束必须是相同类型的。

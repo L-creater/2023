@@ -167,6 +167,14 @@ $ exit
   
   ```
 
+- 保存对容器的操作
+
+  ```bash
+  $ docker commit a2f762449864 kuiperinfer:v1.0
+  ```
+
+  
+
 ## Docker 容器的数据卷
 
 
@@ -372,3 +380,25 @@ docker build -f
 3. 运行docker-compose up 启动应用
 
 ## Docker私有仓库
+
+## Docker network
+
+![image-20230422143840710](/home/ly/.config/Typora/typora-user-images/image-20230422143840710.png)
+
+
+
+### docker network --help 
+
+1.  docker network creat
+2. docker network inspect bridge
+3. docker network connect
+4. ...
+
+
+
+
+
+```
+sudo docker run --net:host --name registry.cn-hangzhou.aliyuncs.com/hellofss/kuiperinfer -i -t registry.cn-hangzhou.aliyuncs.com/hellofss/kuiperinfer /bin/bash
+```
+

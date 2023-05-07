@@ -1,52 +1,62 @@
 [
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Acceptor.cpp.o -c /home/liu/2023/c++server/day12/src/Acceptor.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Acceptor.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Acceptor.cpp.o -c /home/ly/2023/c++server/day12/src/Acceptor.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Acceptor.cpp",
+  "output": "CMakeFiles/server.dir/src/Acceptor.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Buffer.cpp.o -c /home/liu/2023/c++server/day12/src/Buffer.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Buffer.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Buffer.cpp.o -c /home/ly/2023/c++server/day12/src/Buffer.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Buffer.cpp",
+  "output": "CMakeFiles/server.dir/src/Buffer.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Channel.cpp.o -c /home/liu/2023/c++server/day12/src/Channel.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Channel.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Channel.cpp.o -c /home/ly/2023/c++server/day12/src/Channel.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Channel.cpp",
+  "output": "CMakeFiles/server.dir/src/Channel.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Connection.cpp.o -c /home/liu/2023/c++server/day12/src/Connection.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Connection.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Connection.cpp.o -c /home/ly/2023/c++server/day12/src/Connection.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Connection.cpp",
+  "output": "CMakeFiles/server.dir/src/Connection.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Epoll.cpp.o -c /home/liu/2023/c++server/day12/src/Epoll.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Epoll.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Epoll.cpp.o -c /home/ly/2023/c++server/day12/src/Epoll.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Epoll.cpp",
+  "output": "CMakeFiles/server.dir/src/Epoll.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/EventLoop.cpp.o -c /home/liu/2023/c++server/day12/src/EventLoop.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/EventLoop.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/EventLoop.cpp.o -c /home/ly/2023/c++server/day12/src/EventLoop.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/EventLoop.cpp",
+  "output": "CMakeFiles/server.dir/src/EventLoop.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/InetAddress.cpp.o -c /home/liu/2023/c++server/day12/src/InetAddress.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/InetAddress.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/InetAddress.cpp.o -c /home/ly/2023/c++server/day12/src/InetAddress.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/InetAddress.cpp",
+  "output": "CMakeFiles/server.dir/src/InetAddress.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Server.cpp.o -c /home/liu/2023/c++server/day12/src/Server.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Server.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Server.cpp.o -c /home/ly/2023/c++server/day12/src/Server.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Server.cpp",
+  "output": "CMakeFiles/server.dir/src/Server.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/Socket.cpp.o -c /home/liu/2023/c++server/day12/src/Socket.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/Socket.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/Socket.cpp.o -c /home/ly/2023/c++server/day12/src/Socket.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/Socket.cpp",
+  "output": "CMakeFiles/server.dir/src/Socket.cpp.o"
 },
 {
-  "directory": "/home/liu/2023/c++server/day12/build",
-  "command": "/usr/bin/g++   -I/home/liu/2023/c++server/day12/include   -g -o2 -Wall - -g   -o CMakeFiles/server.dir/src/util.cpp.o -c /home/liu/2023/c++server/day12/src/util.cpp",
-  "file": "/home/liu/2023/c++server/day12/src/util.cpp"
+  "directory": "/home/ly/2023/c++server/day12/build",
+  "command": "/usr/bin/g++  -I/home/ly/2023/c++server/day12/include  -g -o2 -Wall - -g -o CMakeFiles/server.dir/src/util.cpp.o -c /home/ly/2023/c++server/day12/src/util.cpp",
+  "file": "/home/ly/2023/c++server/day12/src/util.cpp",
+  "output": "CMakeFiles/server.dir/src/util.cpp.o"
 }
 ]
