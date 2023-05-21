@@ -1,7 +1,7 @@
 import re
 
-ff = open('/home/ly/demo/ocr/CRNN/data/labels/test1.txt','w')  #打开一个文件，可写模式
-with open('/home/ly/demo/ocr/CRNN/data/labels/test.txt','r') as f:  #打开一个文件只读模式
+ff = open('/home/ly/demo/ocr/ocr_data/data/labels/test2.txt','w')  #打开一个文件，可写模式
+with open('/home/ly/demo/ocr/ocr_data/data/labels/test.txt','r') as f:  #打开一个文件只读模式
     line = f.readlines()
     i = 0
     for line_list in line:
@@ -9,8 +9,12 @@ with open('/home/ly/demo/ocr/CRNN/data/labels/test.txt','r') as f:  #打开一�
         print(line_new)
         line_new = str(line_new) #主要是这一步 将之前列表数据转为str才能加入列表
         line_new1 = line_new[:-4]
-        c = re.sub('[\d+_]', '', line_new1)
-        line_new = line_new +' '+ c +'\n'
+        # c = re.sub('[\d+_]', '', line_new1)
+        c = '.png'
+
+
+        line_new = line_new1 + c +'\n'
         i += 1
+
         print(line_new)
         ff.write(line_new) #写入一个新文件中
