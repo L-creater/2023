@@ -20,8 +20,6 @@ sudo apt install gnome-tweaks
 - 自定义顶栏时间显示
 - 简单管理 Gnome 插件
 
-
-
 ## 安装 Gnome 插件
 
 
@@ -66,13 +64,9 @@ https://github.com/mjakeman/extension-manager
 
 设置dock, 在设置--外观--Dock  --屏幕上位置设置为底部
 
-配置dock 行为
-
-![image-20230520224750701](/home/ly/.config/Typora/typora-user-images/image-20230520224750701.png)
-
 ![image-20230519220804495](/home/ly/.config/Typora/typora-user-images/image-20230519220804495.png)
 
-安装dash to dock   ---不要用太垃圾了， 一堆问题
+安装dash to dock
 
 ![](/home/ly/.config/Typora/typora-user-images/image-20230520091049519.png)
 
@@ -104,29 +98,71 @@ sudo apt install -y zsh
 chsh -s $(which zsh)
 ```
 
-# [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-先安装zsh  
+
+# zsh [教程](https://zhuanlan.zhihu.com/p/441676276) 
 
 ```
 sudo apt install zsh
 ```
 
-安装oh-my-zsh
+**安装**oh-my-zsh
 
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+在配置过程中，脚本会提示将 zsh 设为默认的 shell:
 
+
+
+
+
+
+
+### [zsh-syntax-highlighting](https://link.zhihu.com/?target=https%3A//github.com/zsh-users/zsh-syntax-highlighting)
+
+ 是一个命令语法校验插件，在输入命令的过程中，若指令不合法，则指令显示为红色，若指令合法就会显示为绿色。效果如下：
+
+安装步骤：
+
+1. 把插件下载到本地的 `~/.oh-my-zsh/custom/plugins` 目录:  **---custtom  用来存放插件**
 
 ```
-sudo usermod -s /usr/bin/zsh $(whoami)
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
 ```
 
+2. 在 .zshrc 中，把 `zsh-syntax-highlighting` 加入插件列表：
 
+```
+plugins=(
+    # other plugins...
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+```
+
+### [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+
+
+
+安装步骤：
+
+1. 把插件下载到本地的 `~/.oh-my-zsh/custom/plugins` 目录：
+
+   ```
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+   ```
+
+2. 在 `.zshrc` 中，把 `zsh-autosuggestions` 加入插件列表：
+
+   ```
+   plugins=(
+       # other plugins...
+       zsh-autosuggestions  # 插件之间使用空格隔开
+   )
+   ```
+
+3. 开启新的 Shell 或执行 `souce ~/.zshrc`，就可以开始体验插件。
 
 [zinit](https://github.com/zdharma/zi)
-
-WhiteSur-gtk-[theme](https://github.com/vinceliuice/WhiteSur-gtk-theme)
-
