@@ -50,9 +50,9 @@ sudo apt install gnome-themes-extra gtk2-engines-murrine sassc
 
 
 
-![image-20230519223928620](/home/ly/.config/Typora/typora-user-images/image-20230519223928620.png)
+![image-20230519223928620](./assets/image-20230519223928620-1686276894187-3.png)
 
-shell 无法使用  ---插件GNOME Shell 集成  显示--![image-20230519224040914](/home/ly/.config/Typora/typora-user-images/image-20230519224040914.png)
+shell 无法使用  ---插件GNOME Shell 集成  显示--![image-20230519224040914](./assets/image-20230519224040914.png)
 
 
 
@@ -60,7 +60,7 @@ shell 无法使用  ---插件GNOME Shell 集成  显示--![image-202305192240409
 
 https://github.com/mjakeman/extension-manager
 
-![image-20230519224917658](/home/ly/.config/Typora/typora-user-images/image-20230519224917658.png)
+![image-20230519224917658](./assets/image-20230519224917658-1686276914614-6-1686276916589-8.png)
 
 # dock
 
@@ -68,13 +68,13 @@ https://github.com/mjakeman/extension-manager
 
 配置dock 行为
 
-![image-20230520224750701](/home/ly/.config/Typora/typora-user-images/image-20230520224750701.png)
+![image-20230520224750701](./assets/image-20230520224750701-1686276922163-11-1686276925599-13.png)
 
-![image-20230519220804495](/home/ly/.config/Typora/typora-user-images/image-20230519220804495.png)
+![image-20230519220804495](./assets/image-20230519220804495-1686276930851-16.png)
 
 安装dash to dock   ---不要用太垃圾了， 一堆问题
 
-![](/home/ly/.config/Typora/typora-user-images/image-20230520091049519.png)
+![](./assets/image-20230520091049519-1686276939464-19.png)
 
 
 
