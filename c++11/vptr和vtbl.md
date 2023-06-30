@@ -1,6 +1,6 @@
 # 虚指针和虚表
 
-![image-20230628101200465](/home/lyt/.config/Typora/typora-user-images/image-20230628101200465.png)
+![image-20230628101200465](/home/lyt/2023/c++11/assets/image-20230628101200465.png)
 
 继承会把数据继承下来，**还会把函数继承下来** ---继承的是调用权不是内存大小
 
@@ -14,7 +14,7 @@
 //n 就是表中从上往下数  0 1 2 3  4 的位置
 ```
 
-![image-20230628103905843](/home/lyt/.config/Typora/typora-user-images/image-20230628103905843.png)
+![image-20230628103905843](/home/lyt/2023/c++11/assets/image-20230628103905843.png)
 
 谁是一种谁，谁是子类谁是父类，正方形 和 矩形？？
 
@@ -48,7 +48,7 @@
 
 # Dynamic Binding
 
-![image-20230628115809377](/home/lyt/.config/Typora/typora-user-images/image-20230628115809377.png)
+![image-20230628115809377](/home/lyt/2023/c++11/assets/image-20230628115809377.png)
 
 ```
 B b;
@@ -59,6 +59,6 @@ A *pa = new B;
 pa->vfunc1();
 ```
 
-![image-20230628120023488](/home/lyt/.config/Typora/typora-user-images/image-20230628120023488.png)
+![image-20230628120023488](/home/lyt/2023/c++11/assets/image-20230628120023488.png)
 
 **call**---调用虚函数

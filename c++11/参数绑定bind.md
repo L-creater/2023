@@ -50,3 +50,4 @@ for_each(words.begin(),words.end(),bind(print, ref(os), _1, ' '));
 ```
 
 ![image-20230315193158799](/home/liu/python/image-2023315.png)
+
