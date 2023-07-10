@@ -126,7 +126,19 @@ sudo usermod -s /usr/bin/zsh $(whoami)
 
 
 
-[zinit](https://github.com/zdharma/zi)
+## 安装zsh-autosuggestions
+
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+```bash
+#在~/.zshrc中添加
+plugins=( 
+    # other plugins...
+    zsh-autosuggestions
+)
+```
 
 WhiteSur-gtk-[theme](https://github.com/vinceliuice/WhiteSur-gtk-theme)
 
