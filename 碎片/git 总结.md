@@ -23,7 +23,7 @@
    git config --list
 
    ```
-   git config --global user.name "L-creater"
+   git config --global user.name "lyt-s"
    git config --global user.email "1814666859@qq.com"
    
    
