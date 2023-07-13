@@ -48,6 +48,12 @@ sudo apt install gnome-themes-extra gtk2-engines-murrine sassc
 
 默认情况下，GNOME Shell 具有一组由开发人员确定的功能。GNOME Shell 扩展是由第三方开发人员编写的一小段软件代码，用于增强或添加 GNOME 桌面的功能。它们为桌面添加了方便的功能，因此可以通过提高生产力使生活更轻松。
 
+## 安装 gnome shell	
+
+```bash
+sudo apt-get install chrome-gnome-shell
+```
+
 
 
 ![image-20230519223928620](./assets/image-20230519223928620-1686276894187-3.png)

@@ -34,7 +34,7 @@ $ cmake -H. -B build
 - **install**，将执行项目安装规则。我们将在第10章中讨论安装规则。
 - **package**，此目标将调用CPack为项目生成可分发的包。打包和CPack将在第11章中讨论。
 
-### 构建和链接静态库和动态库
+### 构建和链接静态库和动态库 --- add_library
 
 - 创建目标——静态库。库的名称和源码文件名相同，具体代码如下：
 
@@ -119,7 +119,6 @@ endif()
 #用一个选项替换上一个示例的set(USE_LIBRARY OFF)命令。该选项将修改USE_LIBRARY的值，并设置其默认值为OFF：
 
 option(USE_LIBRARY "Compile sources into a library" OFF)
-
 
 ```
 
@@ -214,30 +213,6 @@ set_target_properties(animal-farm
 
 
 
-### 使用控制流
-
-`foreach endforeach`和`while-endwhile`。
-
-两者都可以与`break`结合使用，以便尽早从循环中跳出。
-
-
-
-
-
-- `set_source_files_properties(file PROPERTIES property value)`，它将属性设置为给定文件的传递值。与目标非常相似，文件在CMake中也有属性，允许对构建系统进行非常细粒度的控制。源文件的可用属性列表可以在这里找到: https://cmake.org/cmake/help/v3.5/manual/cmake-properties.7.html#source-file-properties 。
-- `get_source_file_property(VAR file property)`，检索给定文件所需属性的值，并将其存储在CMake`VAR`变量中。
-
-**NOTE**:*CMake中，列表是用分号分隔的字符串组。列表可以由`list`或`set`命令创建。例如，`set(var a b c d e)`和`list(APPEND a b c d e)`都创建了列表`a;b;c;d;e`。*
-
-
-
-**`foreach()`的四种使用方式:**
-
-- `foreach(loop_var arg1 arg2 ...)`: 其中提供循环变量和显式项列表。当为`sources_with_lower_optimization`中的项打印编译器标志集时，使用此表单。注意，如果项目列表位于变量中，则必须显式展开它；也就是说，`${sources_with_lower_optimization}`必须作为参数传递。
-- 通过指定一个范围，可以对整数进行循环，例如：`foreach(loop_var range total)`或`foreach(loop_var range start stop [step])`。
-- 对列表值变量的循环，例如：`foreach(loop_var IN LISTS [list1[...]])` 。参数解释为列表，其内容就会自动展开。
-- 对变量的循环，例如：`foreach(loop_var IN ITEMS [item1 [...]])`。参数的内容没有展开。
-
 
 
 
@@ -252,7 +227,7 @@ set_target_properties(animal-farm
 //工程目录下的
 PROJECT()
 ADD_SUBDIRECTORY(src bin)
-    //src  为其子目录 生成的可执行文件放到 bin文件夹下
+    //src  为其子目录生成的可执行文件放到 bin文件夹下
 ```
 
 ```cmake
@@ -312,7 +287,7 @@ ADD_EXECUTABLE()
 ## target_include_dirctory()
 
 ```
-target_include_dirctory(libanswer PUBLIC ￥{CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_dirctory(libanswer PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 ```
 
 
